@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Courgette');
+
+
+.main-container{
+    margin-top: 55px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 150px;
+}
+.imagen{
+    width: 200px;
+    height: 200px;
+
+}
+body{
+  background-color: #D0D0D0;
+  color: white !important;
+  
+}
+
+
+h1 {
+font-family: 'Courgette', cursive;
+}
+h2 {
+    font-family: 'Courgette', cursive;
+}
+h2:hover{
+    color:black;
+}
+.footerAux {
+    background: #FE3D3D;
+    text-align: center;
+    padding: 10px;
+    
+    
+  position: fixed;
+    height: 60px;
+    bottom: 0;
+    width: 100%;
+  
+}

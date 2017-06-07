@@ -1,0 +1,23 @@
+<h3> {{ perfil.name }} </h3>
+<hr>
+<div class="row">
+
+  <div class="col-md-4">
+    <img [src]="perfil.picture" class="img-fluid-thumbnail imagen">
+  </div>
+
+  <div class="col-md-8">
+    <h3> {{ perfil.nickname }} <small> {{ perfil.updated_at | date }} </small></h3>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+
+        {{ perfil.email }}
+        
+      </li>
+    </ul>
+
+  </div>
+
+
+</div>

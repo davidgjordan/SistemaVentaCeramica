@@ -1,0 +1,30 @@
+<nav style="background:#FE3D3D; color:#7F7F7F" class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand"  [routerLink]="['home']"><h1 style="color:white">CeramicasBol</h1></a>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link"  routerLinkActive="active" [routerLink]="['home']" style="color:white" ><h2>Home</h2></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  routerLinkActive="active" [routerLink]="['precios']" style="color:white" ><h2>Precios</h2></a>
+      </li>
+      <li class="nav-item"  *ngIf="auth.authenticated()">
+        <a class="nav-link"  routerLinkActive="active" [routerLink]="['dashboard']" style="color:white" ><h2>Dashboard</h2></a>
+      </li>
+    </ul>
+
+
+    <!-- app/app.template.html -->
+
+<div class="navbar-header">
+  <a class="navbar-brand"  style="color:white">Angular 4</a>
+  <button class="btn  btn-outline-secondary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()" style="color:white">Log In</button>
+  <button class="btn btn-outline-secondary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()" style="color:white">Log Out</button>
+</div>
+
+
+  </div>
+</nav>
