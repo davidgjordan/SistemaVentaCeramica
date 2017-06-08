@@ -9,6 +9,7 @@ import { Auth } from '../../services/auth.service';
 export class DashboardComponent implements OnInit {
 
   perfil:Object;
+  private opcionMenu:string="";
 
   constructor(private _auth:Auth) {
     this.perfil = this._auth.getProfile();
@@ -17,6 +18,11 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+
+  reciviEvento(eventType:string){
+    this.opcionMenu = eventType;
   }
 
 }

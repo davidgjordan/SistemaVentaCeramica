@@ -1,21 +1,57 @@
-<h3> {{ perfil.name }} </h3>
-<hr>
+
 <div class="row">
 
   <div class="col-md-4">
-    <img [src]="perfil.picture" class="img-fluid-thumbnail imagen">
+
+    <app-menu-opciones (eventoOpcion)="reciviEvento($event)"></app-menu-opciones>
+
   </div>
 
+
+
   <div class="col-md-8">
-    <h3> {{ perfil.nickname }} <small> {{ perfil.updated_at | date }} </small></h3>
+   
+    <h1 class="text-center" style="color:black">
+        {{ opcionMenu | uppercase  }}
 
-    <ul class="list-group">
-      <li class="list-group-item">
 
-        {{ perfil.email }}
-        
-      </li>
-    </ul>
+        <!--Si click en Pedido-->
+        <div class="row" *ngIf="opcionMenu=='pedido'">
+            <app-pedido></app-pedido>
+        </div>
+
+        <!--Si click en Despacho-->
+        <div class="row" *ngIf="opcionMenu=='despacho'">
+            <app-despacho></app-despacho>
+        </div>
+
+        <!--Si click en Precios-->
+        <div class="row" *ngIf="opcionMenu=='precio'">
+            <app-precios></app-precios>
+        </div>
+
+        <!--Si click en Cliente-->
+        <div class="row" *ngIf="opcionMenu=='cliente'">
+            <app-cliente></app-cliente>
+        </div>
+
+        <!--Si click en Produccion-->
+        <div class="row" *ngIf="opcionMenu=='produccion'">
+            <app-produccion></app-produccion>
+        </div>
+
+        <!--Si click en Almacen-->
+        <div class="row" *ngIf="opcionMenu=='almacen'">
+            <app-almacen></app-almacen>
+        </div>
+
+        <!--Si click en Cobros-->
+        <div class="row" *ngIf="opcionMenu=='cobro'">
+            <app-cobro></app-cobro>
+        </div>
+
+
+     </h1> 
 
   </div>
 
