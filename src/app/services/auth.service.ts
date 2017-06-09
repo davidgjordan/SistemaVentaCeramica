@@ -19,21 +19,25 @@ export class Auth {
     rememberLastLogin: false,
     socialButtonStyle: "small",
     theme: { "primaryColor": "#3499D8" },
-    languageDictionary: { "title": "PlaniSoft" },
+    languageDictionary: { "title": "Ceramicas Bol" },
     language: "es",
-    additionlSignUoFields: [{
-      name: "direccion",
-      placeholder: "ingrese su direccion porfavor",
-      //icon: "exple.com",
+    additionalSignUpFields: [{
+      name: "tipoUser",
+      placeholder: "ingrese el tipo de usuario",
+      //icon: "../../assets/img/planeacion.jpg",
       validator: function (direccion) {
         return {
-          valid: direccion.length >= 10,
+          valid: direccion.length >= 3,
           hint: "la direcion debe ser mayor a 10 caracteres"
         };
       }
     },
+    //{
+    //  name: "full_name",
+    //  placeholder: "ingrese su nombre"
+    //},
     {
-      name: "full_name",
+     name: "apodo",
       placeholder: "ingrese su nombre"
     }]
   }

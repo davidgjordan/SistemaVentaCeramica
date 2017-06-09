@@ -13,6 +13,8 @@ import { ROUTES_ROUTING } from './app.routes';
 
 //services
 import { Auth } from './services/auth.service';
+
+//componentes
 import { AuthGuardService } from './services/auth-guard.service';
 import { MenuOpcionesComponent } from './components/dashboard/menu-opciones/menu-opciones.component';
 import { PedidoComponent } from './components/dashboard/pedido/pedido.component';
@@ -22,6 +24,11 @@ import { ClienteComponent } from './components/dashboard/cliente/cliente.compone
 import { ProduccionComponent } from './components/dashboard/produccion/produccion.component';
 import { AlmacenComponent } from './components/dashboard/almacen/almacen.component';
 import { CobroComponent } from './components/dashboard/cobro/cobro.component';
+
+//cards
+import {MdCardModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdGridListModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -43,7 +50,10 @@ import { CobroComponent } from './components/dashboard/cobro/cobro.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ROUTES_ROUTING
+    ROUTES_ROUTING,
+    MdCardModule,
+    BrowserAnimationsModule,
+    MdGridListModule
   ],
   providers: [
     Auth,

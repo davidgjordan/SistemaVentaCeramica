@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Courgette');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 
 .main-container{
@@ -14,23 +15,22 @@
 
 }
 body{
-  background-color: #D0D0D0;
+  background-color: #BDBDBD;
   color: white !important;
   
 }
 
 
 h1 {
-font-family: 'Courgette', cursive;
-}
+font-family: 'Roboto', sans-serif;}
 h2 {
-    font-family: 'Courgette', cursive;
+font-family: 'Roboto', sans-serif;
 }
 h2:hover{
     color:black;
 }
 .footerAux {
-    background: #FE3D3D;
+    background: #D32F2F;
     text-align: center;
     padding: 10px;
     
@@ -40,4 +40,20 @@ h2:hover{
     bottom: 0;
     width: 100%;
   
+}
+
+.example-card {
+  width: 350px;
+  height: 500px;
+  background: white;
+  color:black;
+}
+
+.example-header-image {
+  background-image: url('./assets/img/01.jpg');
+  background-size: cover;
+}
+
+md-grid-tile {
+  background: #EB6969;
 }

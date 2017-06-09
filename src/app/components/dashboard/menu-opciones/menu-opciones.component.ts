@@ -21,9 +21,8 @@ export class MenuOpcionesComponent implements OnInit {
   }
   private cargarDespacho() {
     this.eventoOpcion.emit("despacho");
-
   }
-  private cargarPrecios() {
+  private cargarPrecios() :void{
     this.eventoOpcion.emit("precio");
 
   }

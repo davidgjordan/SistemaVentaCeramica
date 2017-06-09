@@ -1,59 +1,42 @@
+<div>
 
-<div class="row">
+    <div class="row">
 
-  <div class="col-md-4">
+        <div class="col-md-3">
 
-    <app-menu-opciones (eventoOpcion)="reciviEvento($event)"></app-menu-opciones>
+            <app-menu-opciones (eventoOpcion)="reciviEvento($event)"></app-menu-opciones>
 
-  </div>
-
-
-
-  <div class="col-md-8">
-   
-    <h1 class="text-center" style="color:black">
-        {{ opcionMenu | uppercase  }}
-
-
-        <!--Si click en Pedido-->
-        <div class="row" *ngIf="opcionMenu=='pedido'">
-            <app-pedido></app-pedido>
-        </div>
-
-        <!--Si click en Despacho-->
-        <div class="row" *ngIf="opcionMenu=='despacho'">
-            <app-despacho></app-despacho>
-        </div>
-
-        <!--Si click en Precios-->
-        <div class="row" *ngIf="opcionMenu=='precio'">
-            <app-precios></app-precios>
-        </div>
-
-        <!--Si click en Cliente-->
-        <div class="row" *ngIf="opcionMenu=='cliente'">
-            <app-cliente></app-cliente>
-        </div>
-
-        <!--Si click en Produccion-->
-        <div class="row" *ngIf="opcionMenu=='produccion'">
-            <app-produccion></app-produccion>
-        </div>
-
-        <!--Si click en Almacen-->
-        <div class="row" *ngIf="opcionMenu=='almacen'">
-            <app-almacen></app-almacen>
-        </div>
-
-        <!--Si click en Cobros-->
-        <div class="row" *ngIf="opcionMenu=='cobro'">
-            <app-cobro></app-cobro>
         </div>
 
 
-     </h1> 
 
-  </div>
+        <div class="col-md-9">
+
+            <h1 class="text-center" style="color:black">
+                {{ opcionMenu | uppercase }}
+            </h1>
+
+            <div>
+                 <!--Si click en Pedido-->
+                <app-pedido *ngIf="opcionMenu=='pedido'"></app-pedido>
+                    <!--Si click en Despacho-->
+                <app-despacho *ngIf="opcionMenu=='despacho'"></app-despacho>
+                    <!--Si click en Precios-->
+                <app-precios *ngIf="opcionMenu=='precio'"></app-precios>
+                    <!--Si click en Cliente-->
+                <app-cliente *ngIf="opcionMenu=='cliente'"></app-cliente>
+                    <!--Si click en Produccion-->
+                <app-produccion *ngIf="opcionMenu=='produccion'"></app-produccion>
+                    <!--Si click en Almacen-->
+                <app-almacen *ngIf="opcionMenu=='almacen'"></app-almacen>
+                    <!--Si click en Cobros-->
+                <app-cobro *ngIf="opcionMenu=='cobro'"></app-cobro>
+
+            </div>
 
 
+        </div>
+
+
+    </div>
 </div>

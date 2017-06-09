@@ -1,3 +1,171 @@
-<p>
-  pedido works!
-</p>
+<div class="container main-container">
+
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <form>
+
+
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Nombre Ciente</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nombre del Ciente">
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Nit cliente</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+        </div>
+
+      </form>
+
+      <table class="table">
+
+        <thead class="thead-inverse">
+          <tr>
+            <th class="bg-danger" style="color:black">#</th>
+            <th class="bg-danger" style="color:black">Nombre</th>
+            <th class="bg-danger" style="color:black">Cantidad</th>
+            <th class="bg-danger" style="color:black">Precio</th>
+            <th class="bg-danger" style="color:black">opciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th class="table-danger" style="color:black"  scope="row">3</th>
+            <td class="table-danger" style="color:black" >ceramica z3</td>
+            <td class="table-danger" style="color:black" >3</td>
+            <td class="table-danger" style="color:black" >100 bs</td>
+            <td class="table-danger" style="color:black" >editar eliminar</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <h3 style="color:black"> Total de la compra: 5000 bs</h3>
+
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <button (click)="mostrarProductos = !mostrarProductos" class="btn btn-danger">Agregar Ceramicas</button>
+    <div class="col-md-12" *ngIf="mostrarProductos">
+
+
+
+      <md-grid-list cols="3" rowHeight="1:1">
+
+
+        <md-grid-tile>
+          <md-card class="example-card">
+            <md-card-header>
+              <md-card-title>Ceramica Uno</md-card-title>
+            </md-card-header>
+            <img md-card-image src="../../../../assets/img/02.jpg">
+            <md-card-content>
+              <p>
+                Metro cuadrado 10 lucas
+              </p>
+            </md-card-content>
+            <md-card-actions>
+              <button md-button class="btn btn-outline-danger" data-toggle="modal" data-target="#detalle">Detalle</button>
+              <button md-button class="btn btn-outline-danger" data-toggle="modal" data-target="#agregar">Agregar</button>
+            </md-card-actions>
+          </md-card>
+        </md-grid-tile>
+
+
+      </md-grid-list>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<!-- Modal Para detalle-->
+<div class="modal fade bd-example-modal-lg" style="color:black" id="detalle" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong> Producto</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-5">
+
+              <h4><strong>Precio por Unidad:</strong> 10 bs</h4>
+              <h4><strong>Alto:</strong> 40</h4>
+              <h4><strong>Ancho:</strong>  40</h4>
+              <h4><strong>Descripcion: </strong>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis saepe eos alias obcaecati a eius vero, rerum sint suscipit in distinctio magnam ipsam non excepturi dolorum nam maiores adipisci voluptate.
+                </h4>
+              <h4><strong>Cantidad Disponible:</strong> 1000</h4>
+
+            </div>
+
+             <div class="col-md-7">
+              <img style="height:100%; width: 100%" src="../../../../assets/img/01.jpg" alt="">
+            </div>
+        </div>
+
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-danger">Save changes</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Agregar -->
+<div class="modal fade" style="color:black" id="agregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <form>
+
+
+              <div class="form-group">
+                <label style="color:black" for="formGroupExampleInput">Cantidad</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Ingrese la cantidad">
+              </div>
+
+              <div class="form-group">
+                <label style="color:black" for="formGroupExampleInput">Precio por unidad: 20 lucas</label>
+              </div>
+
+      </form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

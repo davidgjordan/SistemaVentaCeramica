@@ -1,30 +1,88 @@
-<nav style="background:#FE3D3D; color:#7F7F7F" class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+<nav style="background:#D32F2F; color:#7F7F7F" class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand"  [routerLink]="['home']"><h1 style="color:white">CeramicasBol</h1></a>
+  <a class="navbar-brand" [routerLink]="['home']">
+    <h1 style="color:white">CeramicasBol</h1>
+  </a>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link"  routerLinkActive="active" [routerLink]="['home']" style="color:white" ><h2>Home</h2></a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['home']" style="color:white">
+          <h2>Home</h2>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  routerLinkActive="active" [routerLink]="['about']" style="color:white" ><h2>About</h2></a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['about']" style="color:white">
+          <h2>About</h2>
+        </a>
       </li>
-      <li class="nav-item"  *ngIf="auth.authenticated()">
-        <a class="nav-link"  routerLinkActive="active" [routerLink]="['dashboard']" style="color:white" ><h2>Dashboard</h2></a>
+      <li class="nav-item" *ngIf="auth.authenticated()">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['dashboard']" style="color:white">
+          <h2>Dashboard</h2>
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="auth.authenticated()">
+
+        <button style="margin:20px; margin-left:30px" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#calculadora"
+          data-whatever="@mdo">Calcular Cantidad Ceramica</button>
+
       </li>
     </ul>
 
 
     <!-- app/app.template.html -->
 
-<div class="navbar-header">
-  <a class="navbar-brand"  style="color:white">Angular 4</a>
-  <button class="btn  btn-outline-secondary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()" style="color:white">Log In</button>
-  <button class="btn btn-outline-secondary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()" style="color:white">Log Out</button>
-</div>
+    <div class="navbar-header">
+      <a class="navbar-brand" style="color:white">Angular 4</a>
+      <button class="btn  btn-outline-secondary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()" style="color:white">Log In</button>
+      <button class="btn btn-outline-secondary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()" style="color:white">Log Out</button>
+    </div>
 
 
   </div>
 </nav>
+
+
+<div style="color:black" class="modal fade" id="calculadora" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Llene los campos porfavor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Alto Ceramica en centimetros</label>
+            <input [(ngModel)]="alto" name="alto" type="number" class="form-control" id="recipient-name">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Ancho ceramica en centimetros</label>
+            <input [(ngModel)]="ancho" name="ancho" type="number" class="form-control" id="recipient-name">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Area en metros</label>
+            <input [(ngModel)]="area" name="area" type="number" class="form-control" id="recipient-name">
+          </div>
+
+          <label for="recipient-name" class="form-control-label">Las unidades de ceramica necesaria son: {{ unidadesNecesarias }}</label>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-outline-danger" (click)=calcularUnidadesCeramina()>Calcular</button>
+      </div>
+    </div>
+  </div>
+</div>
