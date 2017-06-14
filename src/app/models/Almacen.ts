@@ -3,7 +3,7 @@ import { Item } from "./Item";
 export class Almacen{
 
     constructor(private nombre:string
-                , private items:Item[] 
+                , private items?:Item[] 
               ){
 
     }

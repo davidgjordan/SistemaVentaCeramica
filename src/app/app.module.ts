@@ -29,6 +29,10 @@ import { CobroComponent } from './components/dashboard/cobro/cobro.component';
 import {MdCardModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdGridListModule} from '@angular/material';
+//firebase
+import { AngularFireModule } from 'angularfire2';
+import { firebase_config } from "./configuration/firebase-config";
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,9 @@ import {MdGridListModule} from '@angular/material';
     ROUTES_ROUTING,
     MdCardModule,
     BrowserAnimationsModule,
-    MdGridListModule
+    MdGridListModule,
+    AngularFireDatabaseModule, 
+    AngularFireModule.initializeApp(firebase_config.firebase)
   ],
   providers: [
     Auth,

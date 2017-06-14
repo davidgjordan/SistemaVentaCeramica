@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class AlmacenComponent implements OnInit {
+  private agregarAlmacenButton:boolean = false;
 
   constructor() { }
 

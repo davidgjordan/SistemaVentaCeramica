@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ProduccionComponent implements OnInit {
+  private agregarItemButton:boolean = false;
+  private mostrarItemButton:boolean = false;
 
   constructor() { }
 

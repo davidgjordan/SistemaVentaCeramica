@@ -1,3 +1,52 @@
-<p>
-  almacen works!
-</p>
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+
+        <button class="btn btn-danger" type="button" (click)="agregarAlmacenButton = !agregarAlmacenButton">Agregar Almacen</button>
+        
+              <form *ngIf="agregarAlmacenButton">
+                    <div class="form-group">
+                      <label style="color:black" for="formGroupExampleInput">Nombre</label>
+                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nombre del Ciente">
+                    </div>
+
+                    <div class="form-group">
+                      <label style="color:black" for="formGroupExampleInput">Cod Item</label>
+                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+                    </div>
+              </form>
+
+         </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+                <table class="table" style="color:black">
+                  <thead class="thead-inverse">
+                    <tr >
+                      <th style="color:black" class="bg-danger">#</th>
+                      <th style="color:black" class="bg-danger">Cliente</th>
+                      <th style="color:black" class="bg-danger">Nit Cliente</th>
+                      <th style="color:black" class="bg-danger">Total</th>
+                      <th style="color:black" class="bg-danger">Estado Pedido</th>
+                      <th style="color:black" class="bg-danger">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th class="table-danger" scope="row">1</th>
+                      <td class="table-danger">Mark</td>
+                      <td class="table-danger">Otto</td>
+                      <td class="table-danger">@mdo</td>
+                      <td class="table-danger">@mdo</td>
+                      <td class="table-danger">Editar/Eliminar</td>
+                    </tr>
+ 
+                  </tbody>
+                </table>
+
+         </div>
+    </div>
+  </div>
+    
