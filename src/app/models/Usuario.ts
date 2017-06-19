@@ -5,7 +5,7 @@ export class Usuario{
     constructor(private nombre:string
                 , private correo:string 
                 , private tipoUser:string
-                , private idUser:string){
+                , private idUser?:string){
 
     }
     public getNombre() : string {

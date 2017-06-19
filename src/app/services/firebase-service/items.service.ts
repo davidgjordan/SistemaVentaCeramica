@@ -8,7 +8,7 @@ export class ItemService{
 
 private itemsPath: FirebaseListObservable<Item[]> ;
 
-constructor(db: AngularFireDatabase){
+constructor(private db: AngularFireDatabase){
     this.itemsPath = db.list("/items");
 }
 
@@ -19,6 +19,10 @@ public addItem(item:Item){
 
 public getAllItem(){
     return this.itemsPath;
+}
+
+public getItem(key:string){
+    return this.db.object("/items/"+key);
 }
 
 

@@ -1,52 +1,63 @@
 <div class="container">
   <div class="row">
-      <div class="col-md-12">
+    <div class="col-md-12">
 
-        <button class="btn btn-danger" type="button" (click)="agregarAlmacenButton = !agregarAlmacenButton">Agregar Almacen</button>
-        
-              <form *ngIf="agregarAlmacenButton">
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Nombre</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nombre del Ciente">
-                    </div>
+      <button class="btn btn-danger" type="button" (click)="agregarAlmacenButton = !agregarAlmacenButton">Agregar Almacen</button>
 
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Cod Item</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
-                    </div>
-              </form>
+      <form *ngIf="agregarAlmacenButton" [formGroup]="formatoAlmacen" (ngSubmit)="guardarAlmacen()">
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Nombre</label>
+          <input type="text" class="form-control" 
+                id="formGroupExampleInput" 
+                placeholder="Ingrese el Nombre del Ciente"
+                [(ngModel)]="almacen.nombre"
+                name="nombre"
+                formControlName="nombre">
+        </div>
 
-         </div>
-    </div>
+      
 
-    <div class="row">
-      <div class="col-md-12">
+        <br>
+        <button [disabled]="!formatoAlmacen.valid" type="submit" class="btn btn-danger"> Guardar Almacen </button>
+        <br>
 
-                <table class="table" style="color:black">
-                  <thead class="thead-inverse">
-                    <tr >
-                      <th style="color:black" class="bg-danger">#</th>
-                      <th style="color:black" class="bg-danger">Cliente</th>
-                      <th style="color:black" class="bg-danger">Nit Cliente</th>
-                      <th style="color:black" class="bg-danger">Total</th>
-                      <th style="color:black" class="bg-danger">Estado Pedido</th>
-                      <th style="color:black" class="bg-danger">Opciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th class="table-danger" scope="row">1</th>
-                      <td class="table-danger">Mark</td>
-                      <td class="table-danger">Otto</td>
-                      <td class="table-danger">@mdo</td>
-                      <td class="table-danger">@mdo</td>
-                      <td class="table-danger">Editar/Eliminar</td>
-                    </tr>
- 
-                  </tbody>
-                </table>
+      </form>
 
-         </div>
     </div>
   </div>
-    
+
+  <div class="row" *ngIf="listAlmacenes">
+    <div class="col-md-12" *ngFor="let almacen  of listAlmacenes">
+      <h1 style="color:black">{{ almacen._nombre  | uppercase}} </h1>
+
+      <table class="table" style="color:black" *ngIf="almacen._items; let i = index">
+        <thead class="thead-inverse">
+          <tr>
+            <th style="color:black" class="bg-danger">#</th>
+            <th style="color:black" class="bg-danger">Nombre Item</th>
+            <th style="color:black" class="bg-danger">Precio</th>
+            <th style="color:black" class="bg-danger">Cantidad</th>
+            <th style="color:black" class="bg-danger">Descripcion</th>
+            <th style="color:black" class="bg-danger">Mover Item</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of almacen._items" >
+          <tr>
+            <th class="table-danger" scope="row"> {{ i+1 }} </th>
+            <td class="table-danger"> {{ item.nombre }} </td>
+            <td class="table-danger"> {{ item.precio }} </td>
+            <td class="table-danger"> {{ item.cantidad }} </td>
+            <td class="table-danger"> {{ item.descripcion }} </td>
+            <td class="table-danger"> 
+                <select class="form-control" type="text" name="prioridad">
+                        <option *ngFor="let alm of listAlmacenes" [value]="alm._nombre"> {{ alm._nombre }} </option>                        
+               </select>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

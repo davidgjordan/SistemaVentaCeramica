@@ -4,12 +4,12 @@ import { Almacen } from "../../models/Almacen";
 
 @Injectable()
 
-export class ClienteService{
+export class AlmacenService{
 
 private almacenPath: FirebaseListObservable<Almacen[]> ;
 
 constructor(db: AngularFireDatabase){
-    this.almacenPath = db.list("/almacen");
+    this.almacenPath = db.list("/almacenes");
 }
 
 

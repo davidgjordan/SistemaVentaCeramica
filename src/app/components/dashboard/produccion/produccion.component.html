@@ -4,38 +4,76 @@
 
         <button class="btn btn-danger" type="button" (click)="agregarItemButton = !agregarItemButton">Agregar Item</button>
         
-              <form *ngIf="agregarItemButton">
+              <form *ngIf="agregarItemButton" [formGroup]="formatoItem" (ngSubmit)="guardarItem()">
                     <div class="form-group">
                       <label style="color:black" for="formGroupExampleInput">Nombre</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nombre del Ciente">
-                    </div>
-
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Cod Item</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+                      <input type="text" 
+                          class="form-control" 
+                          id="formGroupExampleInput" 
+                          placeholder="Ingrese el Nombre del Ciente"
+                          [(ngModel)]="item._nombre"
+                          name="nombre"
+                          formControlName="nombre">
                     </div>
 
                     <div class="form-group">
                       <label style="color:black" for="formGroupExampleInput">Alto</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+                      <input type="text" class="form-control" 
+                              id="formGroupExampleInput" 
+                              placeholder="Ingrese el Nit del cliente"
+                              [(ngModel)]="item._alto"
+                              name="alto"
+                              formControlName="alto">
                     </div>
 
                     <div class="form-group">
                       <label style="color:black" for="formGroupExampleInput">Ancho</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+                      <input type="text" class="form-control" 
+                          id="formGroupExampleInput" 
+                          placeholder="Ingrese el Nit del cliente"
+                          [(ngModel)]="item._ancho"
+                          name="ancho"
+                          formControlName="ancho">
                     </div>
 
                     <div class="form-group">
                       <label style="color:black" for="formGroupExampleInput">Cantidad</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+                      <input type="text" class="form-control" 
+                            id="formGroupExampleInput" 
+                            placeholder="Ingrese el Nit del cliente"
+                            [(ngModel)]="item._cantidad"
+                            name="cantidad"
+                            formControlName="cantidad">
                     </div>
                     <div class="form-group">
                       <label style="color:black" for="formGroupExampleInput">Descripcion</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+                      <input type="text" 
+                            class="form-control" 
+                            id="formGroupExampleInput" 
+                            placeholder="Ingrese el Nit del cliente"
+                            [(ngModel)]="item._descripcion"
+                            name="descripcion"
+                            formControlName="descripcion">
                     </div>
                     <div class="form-group">
                       <label style="color:black" for="formGroupExampleInput">Tipo ALmacen</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente">
+                      <input type="text" class="form-control" 
+                            id="formGroupExampleInput" 
+                            placeholder="Ingrese el Nit del cliente"
+                            [(ngModel)]="item._tipoAlmacen"
+                            name="tipoAlmacen"
+                            formControlName="tipoAlmacen">
+                    </div>
+
+
+                    <div class="form-group">
+                      <label style="color:black" for="formGroupExampleInput">Imagen</label>
+                      <input type="text" class="form-control" 
+                            id="formGroupExampleInput" 
+                            placeholder="Ingrese el Nit del cliente"
+                            [(ngModel)]="item._imagen"
+                            name="imagen"
+                            formControlName="imagen">
                     </div>
             </form>
 

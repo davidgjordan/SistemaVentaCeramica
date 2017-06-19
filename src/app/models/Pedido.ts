@@ -2,16 +2,13 @@ import { Item } from "./Item";
 
 export class Pedido{
 
-    constructor(private idPedido:string
-                , private idUser:string 
+    constructor(private idUser:string 
                 , private nitCliente:string
                 , private items:Item[]
-                , private total:string
-                , private exitoso:boolean){
+                , private total:number
+                , private exitoso:boolean
+                , private borrado?:boolean){
 
-    }
-    public getIdPedido() : string {
-        return this.idPedido;
     }
     
     public getIdUser() : string {
@@ -25,7 +22,7 @@ export class Pedido{
         return this.items;
     }
 
-    public getTotal() : string {
+    public getTotal() : number {
         return this.total;
     }
 
