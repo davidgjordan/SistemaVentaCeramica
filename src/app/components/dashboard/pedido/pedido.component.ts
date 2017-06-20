@@ -32,7 +32,7 @@ export class PedidoComponent implements OnInit {
 
 
   constructor(private itemS: ItemService, private pedidoS: PedidoService, private auth: Auth) {
-    this.itemDetalle = new Item("nombre", 1, "id", 12, 12, 12, "descripcion");
+    this.itemDetalle = new Item("nombre", 1, 12, 12, 12, "descripcion");
     this.cliente = new Cliente("", "");
     this.usuario = new Usuario(auth.getProfile().user_metadata.apodo
       , auth.getProfile().email
@@ -82,7 +82,7 @@ export class PedidoComponent implements OnInit {
     this.listaItemsPedidoNuevo.push(this.itemDetalle);
     console.log(this.cantidad);
 
-    this.totales.push(this.cantidad * this.itemDetalle.precio);
+    //this.totales.push(this.cantidad * this.itemDetalle.precio);
 
     console.log(this.totales);
     this.totales.forEach(num => {

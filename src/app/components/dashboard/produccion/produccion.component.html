@@ -1,120 +1,179 @@
 <div class="container">
   <div class="row">
-      <div class="col-md-12">
+    <div class="col-md-12">
 
-        <button class="btn btn-danger" type="button" (click)="agregarItemButton = !agregarItemButton">Agregar Item</button>
-        
-              <form *ngIf="agregarItemButton" [formGroup]="formatoItem" (ngSubmit)="guardarItem()">
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Nombre</label>
-                      <input type="text" 
-                          class="form-control" 
-                          id="formGroupExampleInput" 
-                          placeholder="Ingrese el Nombre del Ciente"
-                          [(ngModel)]="item._nombre"
-                          name="nombre"
-                          formControlName="nombre">
-                    </div>
+      <button class="btn btn-danger" type="button" (click)="agregarItemButton = !agregarItemButton">Agregar Nuevo Item</button>
 
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Alto</label>
-                      <input type="text" class="form-control" 
-                              id="formGroupExampleInput" 
-                              placeholder="Ingrese el Nit del cliente"
-                              [(ngModel)]="item._alto"
-                              name="alto"
-                              formControlName="alto">
-                    </div>
+      <form *ngIf="agregarItemButton" [formGroup]="formatoItem" (ngSubmit)="guardarItem()">
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Nombre</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nombre del Ciente" [(ngModel)]="item._nombre"
+            name="nombre" formControlName="nombre">
+        </div>
 
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Ancho</label>
-                      <input type="text" class="form-control" 
-                          id="formGroupExampleInput" 
-                          placeholder="Ingrese el Nit del cliente"
-                          [(ngModel)]="item._ancho"
-                          name="ancho"
-                          formControlName="ancho">
-                    </div>
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Alto</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente" [(ngModel)]="item._alto"
+            name="alto" formControlName="alto">
+        </div>
 
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Cantidad</label>
-                      <input type="text" class="form-control" 
-                            id="formGroupExampleInput" 
-                            placeholder="Ingrese el Nit del cliente"
-                            [(ngModel)]="item._cantidad"
-                            name="cantidad"
-                            formControlName="cantidad">
-                    </div>
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Descripcion</label>
-                      <input type="text" 
-                            class="form-control" 
-                            id="formGroupExampleInput" 
-                            placeholder="Ingrese el Nit del cliente"
-                            [(ngModel)]="item._descripcion"
-                            name="descripcion"
-                            formControlName="descripcion">
-                    </div>
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Tipo ALmacen</label>
-                      <input type="text" class="form-control" 
-                            id="formGroupExampleInput" 
-                            placeholder="Ingrese el Nit del cliente"
-                            [(ngModel)]="item._tipoAlmacen"
-                            name="tipoAlmacen"
-                            formControlName="tipoAlmacen">
-                    </div>
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Ancho</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente" [(ngModel)]="item._ancho"
+            name="ancho" formControlName="ancho">
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Cantidad</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente" [(ngModel)]="item._cantidad"
+            name="cantidad" formControlName="cantidad">
+        </div>
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Descripcion</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente" [(ngModel)]="item._descripcion"
+            name="descripcion" formControlName="descripcion">
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Tipo ALmacen</label>
 
 
-                    <div class="form-group">
-                      <label style="color:black" for="formGroupExampleInput">Imagen</label>
-                      <input type="text" class="form-control" 
-                            id="formGroupExampleInput" 
-                            placeholder="Ingrese el Nit del cliente"
-                            [(ngModel)]="item._imagen"
-                            name="imagen"
-                            formControlName="imagen">
+          <select class="form-control" type="text" name="tipoAlmacen" [(ngModel)]="item._tipoAlmacen" name="tipoAlmacen" formControlName="tipoAlmacen">
+
+                        <option   *ngFor="let alm of listAlmacenes"
+                                 
+                                 [value]="alm._nombre"> {{ alm._nombre }} 
+                        </option>  
+
+                    </select>
+        </div>
+
+
+
+        <div class="form-group">
+          <label style="color:black" for="formGroupExampleInput">Imagen</label>
+          <input type="file" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el Nit del cliente" [(ngModel)]="item._imagen"
+            name="imagen" formControlName="imagen" (change)="cargaImagen($event)">
+        </div>
+
+        <button [disabled]="!formatoItem.valid" type="submit" class="btn btn-danger">Guardar Item</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <button class="btn btn-danger" type="button" (click)="mostrarItemButton = !mostrarItemButton">Items</button>
+
+
+      <md-grid-list cols="3" rowHeight="1:1" *ngIf="mostrarItemButton">
+
+        <div *ngFor="let item of listItem">
+
+
+          <md-grid-tile *ngIf="!item._borrado">
+
+            <md-card class="example-card">
+              <md-card-header>
+                <md-card-title> {{ item._nombre | uppercase }} </md-card-title>
+              </md-card-header>
+              <img md-card-image style="width: 298px; height: 200px;" [src]="item._imagen">
+              <md-card-content>
+                <p>
+                  Metro Cuadrado: {{ item._precio }}
+                </p>
+              </md-card-content>
+              <md-card-actions>
+                <button md-button class="btn btn-outline-danger" data-toggle="modal" (click)="setDetalle(item.$key)" data-target="#detalleProd">Detalle</button>
+                <button md-button class="btn btn-outline-danger" data-toggle="modal" (click)="setEdit(item.$key)" data-target="#editar">Editar</button>
+                <button md-button class="btn btn-outline-danger" data-toggle="modal" (click)="setRemove(item.$key)" data-target="#eliminar">Eliminar</button>
+              </md-card-actions>
+            </md-card>
+
+          </md-grid-tile>
+
+        </div>
+      </md-grid-list>
+
+
+
+
+
+      <!--
+
+      <div class="card-group" *ngIf="mostrarItemButton" >
+
+          <div *ngFor="let item of listItem">
+            
+          
+                  <div class="card"  *ngIf="!item._borrado">
+                    <img class="card-img-top" [src]="item._imagen" alt="Card image cap">
+                    <div class="card-block">
+                      <h4 class="card-title">{{ item._nombre | uppercase }}</h4>
+                      <p class="card-text">Metro Cuadrado: {{ item._precio }}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
-            </form>
+
+                  </div>
+
+
+          </div>
+
+     </div>
+      -->
+
+    </div>
+
+  </div>
+
+
+  <!-- Modal Para detalle-->
+  <div class="modal fade bd-example-modal-lg" style="color:black" id="detalleProd" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel"> {{ itemAux._nombre }} </h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-md-5">
+
+              <h4><strong>Precio por Unidad:</strong> {{ itemAux._precio }} bs</h4>
+              <h4><strong>Alto:</strong> {{ itemAux._alto }} cm</h4>
+              <h4><strong>Ancho:</strong> {{ itemAux._ancho }} cm</h4>
+              <h4><strong>Descripcion: </strong> {{ itemAux._descripcion }}
+              </h4>
+              <h4><strong>Cantidad Disponible:</strong> {{ itemAux._cantidad }} </h4>
+
+            </div>
+
+            <div class="col-md-7">
+              <img style="height:100%; width: 100%" [src]="itemAux._imagen">
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Aceptar</button>
+        </div>
+
 
       </div>
     </div>
-
-    <br>
-    <br>
-
-    <div class="row">
-
-      <div class="col-md-12">
-        
-        <button class="btn btn-danger" type="button" (click)="mostrarItemButton = !mostrarItemButton">Items</button>
-
-            <md-grid-list cols="3" rowHeight="1:1" *ngIf="mostrarItemButton">
-
-
-                <md-grid-tile>
-                         
-                          <md-card class="example-card">
-                            <md-card-header>
-                              <md-card-title>Ceramica Uno</md-card-title>
-                            </md-card-header>
-                            <img md-card-image src="../../../../assets/img/02.jpg">
-                            <md-card-content>
-                              <p>
-                                Metro cuadrado 10 lucas
-                              </p>
-                            </md-card-content>
-                            <md-card-actions>
-                              <button md-button class="btn btn-outline-danger" data-toggle="modal" data-target="#detalle">Detalle</button>
-                              <button md-button class="btn btn-outline-danger" data-toggle="modal" data-target="#agregar">Agregar</button>
-                            </md-card-actions>
-                          </md-card>
-                        </md-grid-tile>
-
-
-                </md-grid-list>
-
-      </div>    
-    </div>
-
-</div>
+  </div>
