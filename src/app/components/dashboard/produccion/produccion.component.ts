@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Item } from "../../../models/Item";
@@ -20,8 +20,11 @@ export class ProduccionComponent implements OnInit {
   private imagen: File;
   private listAlmacenes: Almacen[];
   private listItem: Item[]=[];
+  private itemKey:string ="";
+  @ViewChild('cerrarModalEliminar') cerrarModalEliminar:ElementRef;
 
   constructor(private itemS: ItemService, private almacenS: AlmacenService) {
+    
     this.formatoItem = new FormGroup({
       'nombre': new FormControl('', Validators.required),
       'alto': new FormControl('', Validators.required),
@@ -66,17 +69,24 @@ export class ProduccionComponent implements OnInit {
 
   }
 
-  setDetalle(itemkey: string) {
-
+  setDetalleKey(itemkey: string) {
     this.itemS.getItem(itemkey).subscribe((item) => this.itemAux = item);
+  }
+  setEditKey(itemKey: string) {
+
+        this.itemS.getItem(itemKey).subscribe((item) => {
+          this.agregarItemButton = true;
+          this.item = item;
+        });
 
   }
-  setEdit(itemKey: string) {
-
-  }
-  setRemove(itemKey: string) {
-    
+  setRemoveKey(itemKey: string) {
+    this.itemKey = itemKey;
   }
 
+  eliminarItem(){
+    this.itemS.removeItem(this.itemKey);
+    this.cerrarModalEliminar.nativeElement.click();
+  }
 
 }

@@ -2,7 +2,6 @@ import { Item } from "./Item";
 
 export class Almacen{
     private _nombre:string;
-    private _idAlmacen:number;
     private _items:Item[];
 
     constructor(nombre:string
