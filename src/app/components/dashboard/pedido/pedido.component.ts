@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, OnChanges, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Cliente } from "../../../models/Cliente";
 import { Item } from "../../../models/Item";
@@ -7,6 +7,7 @@ import { Pedido } from "../../../models/Pedido";
 import { Usuario } from "../../../models/Usuario";
 import { ItemService } from "../../../services/firebase-service/items.service";
 import { PedidoService } from "../../../services/firebase-service/pedido.service";
+import { SaveInstancePedido } from "../../../services/firebase-service/saveInstacePedido.service";
 import { Auth } from "../../../services/auth.service";
 
 
@@ -18,7 +19,7 @@ import { Auth } from "../../../services/auth.service";
   providers: [ItemService, PedidoService, Auth],
 
 })
-export class PedidoComponent implements OnInit, OnChanges {
+export class PedidoComponent implements OnInit, OnChanges, DoCheck {
 
   @ViewChild('cerrarAgregar') closeModal: ElementRef;
   @ViewChild('cantidadItems') cantidadItems: ElementRef;
@@ -30,10 +31,10 @@ export class PedidoComponent implements OnInit, OnChanges {
   private listaDespachosItems: DespachoItems[] = [];
   private pedido: Pedido = new Pedido("", "", this.listaDespachosItems, 0, false, false);
   private total: number = 0;
+  private pedidoSaveInstance:Pedido;
 
 
-
-  constructor(private itemS: ItemService, private pedidoS: PedidoService, private auth: Auth) {
+  constructor(private itemS: ItemService, private pedidoS: PedidoService, private auth: Auth, private saveI: SaveInstancePedido) {
 
     this.formatoCliente = new FormGroup({
       'nombre': new FormControl('', [Validators.required]),
@@ -42,18 +43,37 @@ export class PedidoComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    console.log("entraste");
+    //le damos el pedido a un servicio
     this.itemS.getAllItem().subscribe((items) => {
       this.listaItems = items;
     });
+    if(this.saveI.getPedido()){
+    console.log("entraste if onitit");
+      
+      this.formatoCliente.value.nit = this.saveI.getPedido().nitCliente;
+      this.listaDespachosItems = this.saveI.getPedido().despachoItems;
+      this.total = this.saveI.getPedido().total;
+    }
   }
 
+  
   ngOnChanges() {
-    if (this.listaDespachosItems) {
-      console.log("1")
-      for (let y = 0; y < this.listaDespachosItems.length; y++) {
-        this.total += (this.listaDespachosItems[y].item.cantidad * this.listaDespachosItems[y].item.precio);
-      }
-    }
+    console.log("hisiste un cambio");
+  }
+ 
+  ngDoCheck() {
+    console.log("hisiste un ngDoCheck");
+     this.pedidoSaveInstance = new Pedido(
+                this.auth.getProfile().user_id,
+                this.formatoCliente.value.nit,
+                this.listaDespachosItems,
+                this.total,
+                false,
+                false
+            );
+         this.saveI.saveInstace(this.pedidoSaveInstance);
+
   }
 
   setDetalleKey(itemKey: string) {
@@ -64,6 +84,9 @@ export class PedidoComponent implements OnInit, OnChanges {
   }
   setEditKey(itemKey: string) {
     this.itemKey = itemKey;
+    this.itemS.getItem(itemKey).subscribe((item: Item) => {
+      this.item = item;
+    });
   }
 
   //metodo para agregar items a la tabla 
@@ -79,7 +102,6 @@ export class PedidoComponent implements OnInit, OnChanges {
       setTimeout(() => {
         if (itemAux.cantidad >= cantidad) {
           //restar y actualizar
-          let cantidadPrimera: number = itemAux.cantidad;
           itemAux.cantidad = itemAux.cantidad - cantidad;
           this.itemS.updateItem(this.itemKey, itemAux, null).then(() => console.log("then entre")).catch((error) => console.log("then entre"));
           //pushear a la lista de listaDespachositemAuxs 
@@ -122,7 +144,7 @@ export class PedidoComponent implements OnInit, OnChanges {
 
     }
 
-    setTimeout( () =>{
+    setTimeout(() => {
       this.calcularTotal();
     }, 1500);
   }
@@ -131,17 +153,12 @@ export class PedidoComponent implements OnInit, OnChanges {
   calcularTotal() {
 
     if (this.listaDespachosItems.length > 0) {
-      console.log("2")
-        this.total = 0;
+      this.total = 0;
       for (let y = 0; y < this.listaDespachosItems.length; y++) {
         this.total = this.total + (this.listaDespachosItems[y].item.cantidad * this.listaDespachosItems[y].item.precio);
-        console.log("total");
-        
-        console.log(this.total);
-        console.log(this.listaDespachosItems[y].item.cantidad * this.listaDespachosItems[y].item.precio);
       }
-      
     }
+
   }
 
   guardarPedido() {
@@ -149,6 +166,15 @@ export class PedidoComponent implements OnInit, OnChanges {
     this.pedido.idUser = this.auth.getProfile().user_id;
     this.pedido.nitCliente = this.formatoCliente.value.nit;
     this.pedido.despachoItems = this.listaDespachosItems;
+    this.pedido.total = this.total;
+    this.pedido.exitoso = false;
+    this.pedido.borrado = false;
+
+
+    this.pedidoS.addPedido(this.pedido).then(() => console.log("exito")).catch((error) => console.log(error));
+
+
+
 
   }
 

@@ -15,7 +15,7 @@
 
         <div class="form-group">
           <label style="color:black">Nit cliente</label>
-          <input type="text" class="form-control" placeholder="Ingrese el Nit del cliente"  name="nit" formControlName="nit">
+          <input type="text" class="form-control" placeholder="Ingrese el Nit del cliente" [(ngModel)]="saveI.getPedido().nitCliente" name="nit" formControlName="nit">
         </div>
 
         <table class="table">
@@ -38,7 +38,7 @@
               <td class="table-danger" style="color:black"> {{ despacho.item.cantidad }} Unidades</td>
               <td class="table-danger" style="color:black"> {{ despacho.item.precio }} Bs/Unidad</td>
               <td class="table-danger" style="color:black"> {{ despacho.item.cantidad *  despacho.item.precio }} Total en Bs  </td>
-              <td class="table-danger" style="color:black"> </td>
+              <td class="table-danger" style="color:black"> Eliminar </td>
             </tr>
           </tbody>
 
@@ -184,7 +184,7 @@
 
           <div class="form-group">
             <label style="color:black" for="formGroupExampleInput">Cantidad</label>
-            <input #cantidadItems type="number" class="form-control" id="formGroupExampleInput" [(ngModel)]="cantidad" name="cantidad" placeholder="Ingrese la cantidad">
+            <input #cantidadItems type="number" class="form-control" id="formGroupExampleInput"  name="cantidad" placeholder="Ingrese la cantidad">
           </div>
 
           <div class="form-group">
