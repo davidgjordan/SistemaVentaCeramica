@@ -1,35 +1,54 @@
-<div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          
-            <md-grid-list cols="3" rowHeight="1:1">
+  <div class="container">
+  
 
 
-              <md-grid-tile>
-                <md-card class="example-card">
-                  <md-card-header>
-                    <md-card-title>Ceramica Uno</md-card-title>
-                  </md-card-header>
-                  <img md-card-image src="../../../../assets/img/02.jpg">
-                  <md-card-content>
-                    <p>
-                      Metro cuadrado 10 lucas
-                    </p>
-                  </md-card-content>
-                  <md-card-actions>
-                    <button md-button class="btn btn-outline-danger" data-toggle="modal" data-target="#detallePrecio">Detalle</button>
-                    <button md-button class="btn btn-outline-danger" data-toggle="modal" data-target="#editarPrecio">Editar Precio</button>
-                  </md-card-actions>
-                </md-card>
-              </md-grid-tile>
+        <div class="row">
 
+          <div class="col-md-12">
+
+
+            <md-grid-list cols="3" rowHeight="1:1" *ngIf="listItems">
+
+              <div *ngFor="let item of listItems">
+
+
+                <md-grid-tile *ngIf="!item.borrado" >
+
+                  <md-card class="example-card" style="border: 2 black solid">
+                    <md-card-header>
+                      <md-card-title style="padding-top: 15px;" > <h3 class="text-titulo-card"> {{ item.nombre | uppercase }} </h3></md-card-title>
+                    </md-card-header>
+                    <img md-card-image style="width: 298px; height: 140px;" [src]="item.imagen">
+                    <md-card-content>
+                      <h6>
+                        Almacen Actual: {{ item.tipoAlmacen }}
+                      </h6>
+                      <h6>
+                        Precio: {{ item.precio }} Bs/Unidad
+                      </h6>
+                      <p>
+                        Cantidad Disponible: {{ item.cantidad }} Unidades.
+                      </p>
+                      <button md-button class="btn btn-outline-danger" data-toggle="modal" (click)="setDetalleKey(item.$key)" data-target="#detallePrecio">Deta</button>
+                      <button md-button class="btn btn-outline-danger" data-toggle="modal" (click)="setEditKey(item.$key)" data-target="#editarPrecio">Edit</button>
+                    </md-card-content>
+                    
+                  </md-card>
+                  
+                
+
+                </md-grid-tile>
+
+              </div>
             </md-grid-list>
 
 
+          </div>
+
         </div>
-    </div>
-</div>
-  
+        
+  </div>
+
 
 
   <!-- Modal Para detalle-->
@@ -38,7 +57,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><strong> Producto</strong></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><strong> {{ item.nombre }}  </strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -49,18 +68,18 @@
         <div class="row">
             <div class="col-md-5">
 
-              <h4><strong>Precio por Unidad:</strong> 10 bs</h4>
-              <h4><strong>Alto:</strong> 40</h4>
-              <h4><strong>Ancho:</strong>  40</h4>
-              <h4><strong>Descripcion: </strong>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis saepe eos alias obcaecati a eius vero, rerum sint suscipit in distinctio magnam ipsam non excepturi dolorum nam maiores adipisci voluptate.
+              <h4><strong>Precio por Unidad:</strong> {{ item.precio }} bs</h4>
+              <h4><strong>Alto:</strong>  {{ item.alto }} cm</h4>
+              <h4><strong>Ancho:</strong>  {{ item.ancho }} cm</h4>
+              <h4><strong>Descripcion:</strong>
+                   {{  item.descripcion }}  
                 </h4>
-              <h4><strong>Cantidad Disponible:</strong> 1000</h4>
+              <h4><strong>Cantidad Disponible:</strong> {{ item.cantidad }} Unidades </h4>
 
             </div>
 
              <div class="col-md-7">
-              <img style="height:100%; width: 100%" src="../../../../assets/img/01.jpg" alt="">
+              <img style="height:100%; width: 100%" [src]="item?.imagen">
             </div>
         </div>
 
@@ -83,7 +102,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Editar Precio</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" #cerrarEditarPrecio class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -93,12 +112,12 @@
 
 
               <div class="form-group">
-                <label style="color:black" for="formGroupExampleInput">Cantidad</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Ingrese la cantidad">
+                <label style="color:black" for="formGroupExampleInput">Precio por Unidad</label>
+                <input #precio type="number" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el precio">
               </div>
 
               <div class="form-group">
-                <label style="color:black" for="formGroupExampleInput">Precio por unidad: 20 lucas</label>
+                <label style="color:black" for="formGroupExampleInput">Precio Actual por unidad: {{ item.precio }} Bs</label>
               </div>
 
       </form>
@@ -107,7 +126,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="editarPrecio(precio.value)">Aceptar</button>
       </div>
     </div>
   </div>

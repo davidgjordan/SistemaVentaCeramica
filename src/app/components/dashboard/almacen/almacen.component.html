@@ -24,7 +24,7 @@
 
   <div class="row" *ngIf="listAlmacenes.length > 0">
     <div class="col-md-12" *ngFor="let almacen  of listAlmacenes">
-      <h1 style="color:black">{{ almacen._nombre | uppercase}} </h1>
+      <h1 style="color:black">{{ almacen.nombre | uppercase}} </h1>
 
 
 
@@ -40,11 +40,11 @@
           </tr>
         </thead>
         <tbody *ngFor="let item of listAllItems">
-          <tr *ngIf="almacen._nombre == item._tipoALmacen && item._borrado == false">
-            <td class="table-danger"> {{ item._nombre }} </td>
-            <td class="table-danger"> {{ item._precio }} </td>
-            <td class="table-danger"> {{ item._cantidad }} </td>
-            <td class="table-danger"> {{ item._descripcion }} </td>
+          <tr *ngIf="almacen.nombre == item.tipoAlmacen && item.borrado == false">
+            <td class="table-danger"> {{ item.nombre }} </td>
+            <td class="table-danger"> {{ item.precio }} </td>
+            <td class="table-danger"> {{ item.cantidad }} </td>
+            <td class="table-danger"> {{ item.descripcion }} </td>
             <td class="table-danger">
               <button type="button" class="btn btn-danger" data-toggle="modal" (click)="setKeyCambiarAlmacen(item.$key)" data-target="#modalCambiarAlmacen">
                     Cambiar Almacen
@@ -76,11 +76,13 @@
         </button>
       </div>
       <div class="modal-body" style="color:black">
-        <h4> {{ item._nombre | uppercase }} </h4>
-        <h4> Almacen: {{ item._tipoALmacen | uppercase }} </h4>
-        <h4>Cantidad disponible: {{ item._cantidad }}</h4>
+        <h4> {{ item.nombre | uppercase }} </h4>
+        <h4> Almacen Actual: {{ item.tipoAlmacen | uppercase }} </h4>
+        <h4>Cantidad disponible: {{ item.cantidad }}</h4>
         <input #cantidadPorMover class="form-control" type="number" placeholder="ingrese la cantidad">
         <!-- aumente esto para q sellecione el tipo de almacen a cambiar -->
+         <h5 class="modal-title" id="exampleModalLabel" style="color:black">Cambiar a.... </h5>
+
         <select 
                   type="text"
                   name="tipoAlmacen" 
@@ -88,7 +90,7 @@
                   >
                     <option   *ngFor="let alm of listAlmacenes" 
                             
-                        [value]="alm._nombre"> {{ alm._nombre }} 
+                        [value]="alm.nombre"> {{ alm.nombre }} 
                     </option>  
                   
 

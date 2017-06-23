@@ -26,6 +26,10 @@ font-family: 'Roboto', sans-serif;}
 h2 {
 font-family: 'Roboto', sans-serif;
 }
+.text-titulo-card{
+font-family: 'Roboto', sans-serif;
+
+}
 h2:hover{
     color:black;
 }
@@ -44,8 +48,10 @@ h2:hover{
 
 .example-card {
   width: 300px;
+  height: 400px;
   background: white;
   color:black;
+  padding-bottom: 30px;
 }
 
 .example-header-image {
