@@ -6,9 +6,11 @@ import { Injectable } from "@angular/core";
 export class SaveInstancePedido{
 
 public pedido:Pedido;
-public saveInstace(pedido:Pedido){
+public nombre:string = "";
+public saveInstace(pedido:Pedido, nombre:string){
 
     this.pedido = pedido;
+    this.nombre = nombre;
 }
 
 public getPedido(){

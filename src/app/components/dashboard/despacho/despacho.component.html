@@ -9,36 +9,62 @@
                       <th style="color:black" class="bg-danger">#</th>
                       <th style="color:black" class="bg-danger">Cliente</th>
                       <th style="color:black" class="bg-danger">Nit Cliente</th>
-                      <th style="color:black" class="bg-danger">Total</th>
+                      <th style="color:black" class="bg-danger">Items</th>
+                      <th style="color:black" class="bg-danger">Total Bs</th>
                       <th style="color:black" class="bg-danger">Estado Pedido</th>
                       <th style="color:black" class="bg-danger">Opciones</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+                  <tbody *ngFor="let pedido of listaPedidos">
+
+                    <tr *ngIf="!pedido.borrado && !pedido.ventaExitosa">
+                   
+                      
                       <th class="table-danger" scope="row">1</th>
-                      <td class="table-danger">Mark</td>
-                      <td class="table-danger">Otto</td>
-                      <td class="table-danger">@mdo</td>
-                      <td class="table-danger">@mdo</td>
-                      <td class="table-danger">Editar/Eliminar</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>@fat</td>
-                      <td>Editar/Eliminar</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                      <td>@twitter</td>
-                      <td>Editar/Eliminar</td>
-                    </tr>
+                      <td class="table-danger"> {{ pedido.nombreCliente }} </td>
+                      <td class="table-danger"> {{ pedido.nitCliente }} </td>
+                      <td class="table-danger"> 
+                      
+                        <div *ngFor="let despachoItem of pedido.despachoItems">
+                          
+                          <h6 style="color:black" > <strong> Cantidad , Item</strong>  </h6>
+                          <h6 style="color:black" > {{ despachoItem.item.cantidad }}, {{ despachoItem.item.nombre }}  </h6>
+                        </div>
+                            
+                                             
+                      </td>
+                      <td class="table-danger"> {{ pedido.total }} </td>
+                      <td class="table-danger">
+
+                        <h6 *ngIf="pedido.despachoExitoso"> Estado del pedido: Listo Para Despachar</h6> 
+                        <h6 *ngIf="!pedido.despachoExitoso"> Estado del pedido: En Proceso</h6> 
+
+                      </td>
+                      <td class="table-danger">
+
+                        <div>
+                          <div class="row">
+                            
+                            <button style="margin-bottom: 10px" *ngIf="!pedido.despachoExitoso" (click)="aprobarPedido(pedido.$key, true)" type="button" class="btn btn-danger">Aprobar Pedido</button>
+                          </div>
+                          <div class="row">
+                            
+                            <button style="margin-bottom: 10px" *ngIf="pedido.despachoExitoso" (click)="aprobarPedido(pedido.$key, false)" type="button" class="btn btn-danger">Pedido en Proceso</button>
+                          </div>
+                          <div class="row">
+                            
+                            <button type="button" class="btn btn-danger" (click)="eliminarPedido(pedido.$key)">Eliminar Pedido</button>
+                          </div>
+                          
+                        </div>
+
+
+                      </td>
+                 
+                    </tr>  
+
+
+
                   </tbody>
                 </table>
                     

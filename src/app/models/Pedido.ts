@@ -3,12 +3,16 @@ import { DespachoItems } from "./Despacho";
 
 export class Pedido{
 
-    constructor(public    idUser:string 
-                , public  nitCliente:string
+    constructor( public    idUser:string,
+                 public     nombreCliente 
+                , public  nitCliente:number
                 , public  despachoItems:DespachoItems[]
                 , public  total:number
-                , public  exitoso:boolean
-                , public  borrado?:boolean){
+                , public   descuento:number
+                , public totalFinal:number
+                , public  despachoExitoso:boolean
+                , public   ventaExitosa:boolean
+                , public  borrado:boolean){
 
     }  
 

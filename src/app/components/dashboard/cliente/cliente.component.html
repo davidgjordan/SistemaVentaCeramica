@@ -3,8 +3,8 @@
         <div class="col-md-12">
 
             <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-danger my-2 my-sm-0" type="submit">Buscar Segun Nit Del Cliente</button>
+              <input #nitCliente class="form-control mr-sm-2" type="number" placeholder="Search">
+              <button class="btn btn-danger my-2 my-sm-0" (click)="buscarPorNit(nitCliente.value)" type="submit">Buscar Segun Nit Del Cliente</button>
             </form>
 
         </div>
@@ -14,39 +14,27 @@
              <table class="table" style="color:black">
                   <thead class="thead-inverse">
                     <tr >
-                      <th style="color:black" class="bg-danger">#</th>
-                      <th style="color:black" class="bg-danger">Cliente</th>
+                      <th style="color:black" class="bg-danger">Nombre Cliente</th>
                       <th style="color:black" class="bg-danger">Nit Cliente</th>
-                      <th style="color:black" class="bg-danger">Total</th>
-                      <th style="color:black" class="bg-danger">Estado Pedido</th>
-                      <th style="color:black" class="bg-danger">Opciones</th>
+                      <th style="color:black" class="bg-danger">Total Anterior</th>
+                      <th style="color:black" class="bg-danger">Porcentaje Descuento</th>
+                      <th style="color:black" class="bg-danger">Total Final</th>
+                      <th style="color:black" class="bg-danger">Detalle</th>
+                      <th style="color:black" class="bg-danger">Fecha</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <th class="table-danger" scope="row">1</th>
-                      <td class="table-danger">Mark</td>
-                      <td class="table-danger">Otto</td>
-                      <td class="table-danger">@mdo</td>
-                      <td class="table-danger">@mdo</td>
-                      <td class="table-danger">Editar/Eliminar</td>
+                  <tbody *ngIf="listaTransaccionesCliente.length > 0">
+
+                    <tr *ngFor="let transaccion of listaTransaccionesCliente">
+                      <td class="table-danger"> {{  transaccion.nombreCliente }} </td>
+                      <td class="table-danger"> {{  transaccion.nitCliente }} </td>
+                      <td class="table-danger"> {{  transaccion.totalAnterior }} </td>
+                      <td class="table-danger"> {{  transaccion.porcentajeDescuento }} </td>
+                      <td class="table-danger"> {{  transaccion.totalFinal }} </td>
+                      <td class="table-danger"> {{  transaccion.detalle }} </td>
+                      <td class="table-danger"> {{  transaccion.date }} </td>
                     </tr>
-                    <tr>
-                      <th class="table-danger" scope="row">2</th>
-                      <td class="table-danger">Jacob</td>
-                      <td class="table-danger">Thornton</td>
-                      <td class="table-danger">@fat</td>
-                      <td class="table-danger">@fat</td>
-                      <td class="table-danger">Editar/Eliminar</td>
-                    </tr>
-                    <tr>
-                      <th class="table-danger" scope="row">3</th>
-                      <td class="table-danger">Larry</td>
-                      <td class="table-danger">the Bird</td>
-                      <td class="table-danger">@twitter</td>
-                      <td class="table-danger">@twitter</td>
-                      <td class="table-danger">Editar/Eliminar</td>
-                    </tr>
+                 
                   </tbody>
                 </table>
           

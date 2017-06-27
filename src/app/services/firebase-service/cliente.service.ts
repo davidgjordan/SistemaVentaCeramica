@@ -4,22 +4,42 @@ import { Cliente } from "../../models/Cliente";
 
 @Injectable()
 
-export class ClienteService{
+export class ClienteService {
 
-private clientePath: FirebaseListObservable<Cliente[]> ;
+    private clientePath: FirebaseListObservable<Cliente[]>;
 
-constructor(db: AngularFireDatabase){
-    this.clientePath = db.list("/clientes");
-}
+    constructor(private db: AngularFireDatabase) {
+        this.clientePath = db.list("/clientes");
+    }
 
 
-public addCliente(cliente:Cliente){  
-    return this.clientePath.push(cliente);
-}
+    public addCliente(cliente: Cliente) {
 
-public getAllCliente(){
-    return this.clientePath;
-}
+
+        const r = this.db.list("/clientes/", {
+            query: {
+                orderByChild: 'nit',
+                equalTo: cliente.nit,
+            }
+        });
+        r.subscribe((listaClientesNit) => {
+            if (listaClientesNit.length < 1) {
+                console.log("cliente pusheando");
+                return this.clientePath.push(cliente);
+            }else{
+                console.log("Cliente nada");                
+                return;
+            }
+        });
+
+
+    }
+
+
+
+    public getAllCliente() {
+        return this.clientePath;
+    }
 
 
 }

@@ -3,19 +3,19 @@
   <div class="row">
     <div class="col-md-12">
 
-
+        <button style="margin-left: 800px" type="button" (click)="cancelarPedido()" class="btn btn-danger">Cancelar Pedido</button>
       <form [formGroup]="formatoCliente" (ngSubmit)="guardarPedido()">
 
 
         <div class="form-group">
           <label style="color:black">Nombre Ciente</label>
-          <input type="text" class="form-control" placeholder="Ingrese el Nombre del Ciente"  name="nombre"
+          <input type="text" class="form-control" placeholder="Ingrese el Nombre del Ciente"  [(ngModel)]="saveI.nombre" name="nombre"
             formControlName="nombre">
         </div>
 
         <div class="form-group">
           <label style="color:black">Nit cliente</label>
-          <input type="text" class="form-control" placeholder="Ingrese el Nit del cliente" [(ngModel)]="saveI.getPedido().nitCliente" name="nit" formControlName="nit">
+          <input type="number" class="form-control" placeholder="Ingrese el Nit del cliente" [(ngModel)]="saveI.getPedido().nitCliente" name="nit" formControlName="nit">
         </div>
 
         <table class="table">
@@ -38,7 +38,9 @@
               <td class="table-danger" style="color:black"> {{ despacho.item.cantidad }} Unidades</td>
               <td class="table-danger" style="color:black"> {{ despacho.item.precio }} Bs/Unidad</td>
               <td class="table-danger" style="color:black"> {{ despacho.item.cantidad *  despacho.item.precio }} Total en Bs  </td>
-              <td class="table-danger" style="color:black"> Eliminar </td>
+              <td class="table-danger" style="color:black"> 
+                  <button type="button" (click)="eliminarItemTabla(despacho)" class="btn btn-danger"> Eliminar </button>  
+              </td>
             </tr>
           </tbody>
 
@@ -196,8 +198,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="agregarItems(cantidadItems.value)">Guardar Cambios</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="agregarItems(cantidadItems.value)">Guardar Cambios</button>
       </div>
     </div>
   </div>

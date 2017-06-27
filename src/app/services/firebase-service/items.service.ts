@@ -44,11 +44,13 @@ export class ItemService {
 
                 item.imagen = imagen.downloadURL;
                 item.borrado = false;
-                return this.db.object('/items/'+key).update(item);
+                 return this.db.list('/items/').update(key,item).then( () => console.log("then entre")).catch( (error) =>console.log("cath entre"+error));
+                 
             });
         }else{
 
-        return this.db.object('/items/' + key).update(item);
+             this.db.list('/items/').update(key, item).then( () => console.log("then entre")).catch( (error) =>console.log("cath entre"+error)); 
+             
         }
 
     }
