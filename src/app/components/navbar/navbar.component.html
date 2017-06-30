@@ -9,17 +9,17 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['home']" style="color:white">
+        <a class="nav-link" [routerLinkActive]="['activado']" [routerLink]="['home']" >
           <h2>Home</h2>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['about']" style="color:white">
+        <a class="nav-link" [routerLinkActive]="['activado']" [routerLink]="['about']">
           <h2>About</h2>
         </a>
       </li>
       <li class="nav-item" *ngIf="auth.authenticated()">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['dashboard']" style="color:white">
+        <a class="nav-link" [routerLinkActive]="['activado']" [routerLink]="['dashboard']" >
           <h2>Dashboard</h2>
         </a>
       </li>

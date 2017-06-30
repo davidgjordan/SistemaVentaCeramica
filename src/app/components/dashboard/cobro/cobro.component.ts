@@ -6,7 +6,8 @@ import { TransaccionService } from "../../../services/firebase-service/transacci
 import { Transaccion } from "../../../models/Transaccion";
 import { Pedido } from "../../../models/Pedido";
 import { DespachoItems } from "../../../models/Despacho";
-
+//pdf
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-cobro',
@@ -21,6 +22,9 @@ export class CobroComponent implements OnInit {
   @ViewChild('cerrarModalDescuentoPrecio') cerrarModalDescuentoPrecio: ElementRef;
   @ViewChild('cerrarModalVentaExitosa') cerrarModalVentaExitosa: ElementRef;
   private pedido: Pedido = new Pedido("", "", 0, this.listaDespachosItems, 0, 0, 0, false, false, false);
+  private pdf = new jsPDF();
+
+
   constructor(private pedidoS: PedidoService, private transaccionS: TransaccionService) { }
 
   ngOnInit() {
@@ -98,6 +102,7 @@ export class CobroComponent implements OnInit {
             console.log("transaccion exitosa");
             //cerramos modal
             this.cerrarModalVentaExitosa.nativeElement.click();
+            this.generarPDFCobro(transaccion, pedidoAux);
           })
             .catch((error) => ("fallo en la transaccion" + error));
         }).catch((error) => console.log("fallo venta exitosa" + error))
@@ -106,6 +111,46 @@ export class CobroComponent implements OnInit {
 
       }
     }, 1200);
+  }
+
+
+
+
+  generarPDFCobro(transaccion:Transaccion, pedido:Pedido) {
+
+    this.pdf.setFontSize(30);
+    this.pdf.text(85, 30, "Transacción ");
+    this.pdf.rect(30, 35, 150, 2);
+    this.pdf.setFontSize(20);
+    this.pdf.text(30, 45, `ID Vendedor:  ${transaccion.idUser}`);
+    this.pdf.text(30, 55, `Nombre Cliente:  ${transaccion.nombreCliente}`);
+    this.pdf.text(30, 65, `NIT Clliente:   ${transaccion.nitCliente}`);
+
+
+    this.pdf.text(30, 75, `Total Inicial: ${transaccion.totalAnterior}`);
+    this.pdf.text(30, 85, `Porcentaje Descuento: ${transaccion.porcentajeDescuento}%`);
+    this.pdf.text(30, 95, `Total Final:${transaccion.totalFinal}`);
+    this.pdf.text(30, 105, `Detalle de la compra: ${transaccion.detalle}`);
+    this.pdf.text(30, 115, `Fecha de la compra: ${transaccion.date}`);
+
+
+    this.pdf.text(30, 125, `Productos del Pedido: `);
+    this.pdf.text(45, 135, "Producto: ");
+    this.pdf.text(120, 130, "Cantidad: ");
+
+    let distancia: number = 140;
+    this.pedido.despachoItems.forEach((despacho: DespachoItems) => {
+      this.pdf.setFontSize(15);
+      this.pdf.text(52, distancia, `${despacho.item.nombre}`);
+      this.pdf.text(130, distancia, `${despacho.item.cantidad}`);
+      distancia += 7;
+    });
+
+    
+    this.pdf.save(`Transaccion_Nit_Cliente_${this.pedido.nitCliente}.pdf`);
+
+
+
   }
 
 }

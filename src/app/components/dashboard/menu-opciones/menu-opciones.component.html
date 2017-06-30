@@ -7,22 +7,22 @@
 <div>
 
   <!-- Opciones para el usuario de tipo Comercial -->
-  <div class="row">
-    <button type="button" (click)="cargarPedidos()" class="btn btn-danger btn-lg btn-block">Pedidos</button>
-    <button type="button" (click)="cargarDespacho()" class="btn btn-danger btn-lg btn-block">Despacho</button>
-    <button type="button" (click)="cargarPrecios()" class="btn btn-danger btn-lg btn-block">Precios</button>
-    <button type="button" (click)="cargarCliente()" class="btn btn-danger btn-lg btn-block">Cliente</button>
+  <div class="row"  *ngIf="_auth.getProfile().user_metadata.tipo_user == 'admin' || _auth.getProfile().user_metadata.tipo_user == 'comercial'" >
+    <button  type="button" (click)="cargarPedidos()" class="btn btn-danger btn-lg btn-block">Pedidos</button>
+    <button  type="button" (click)="cargarDespacho()" class="btn btn-danger btn-lg btn-block">Despacho</button>
+    <button  type="button" (click)="cargarPrecios()" class="btn btn-danger btn-lg btn-block">Precios</button>
+    <button  type="button" (click)="cargarCliente()" class="btn btn-danger btn-lg btn-block">Cliente</button>
   </div>
    <br>
   <!-- Opciones para el usuario de tipo Produccion -->
-  <div class="row">
-    <button type="button" (click)="cargarProduccion()" class="btn btn-danger btn-lg btn-block">Produccion</button>
-    <button type="button" (click)="cargarAlmacenes()" class="btn btn-danger btn-lg btn-block">Almacenes</button>
+  <div class="row" *ngIf="_auth.getProfile().user_metadata.tipo_user == 'admin' || _auth.getProfile().user_metadata.tipo_user == 'produccion'" >
+    <button  type="button" (click)="cargarProduccion()" class="btn btn-danger btn-lg btn-block">Produccion</button>
+    <button  type="button" (click)="cargarAlmacenes()" class="btn btn-danger btn-lg btn-block">Almacenes</button>
   </div>
 <br>
   <!-- Opciones para el usuario de tipo Cobros -->
-  <div class="row">
-    <button type="button" (click)="cargarCobros()" class="btn btn-danger btn-lg btn-block">Cobros</button>
+  <div class="row" *ngIf="_auth.getProfile().user_metadata.tipo_user == 'admin' || _auth.getProfile().user_metadata.tipo_user == 'cobro'" >
+    <button  type="button" (click)="cargarCobros()" class="btn btn-danger btn-lg btn-block">Cobros</button>
   </div>
 
 </div>

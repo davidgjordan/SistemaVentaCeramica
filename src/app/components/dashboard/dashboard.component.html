@@ -14,23 +14,24 @@
 
             <h1 class="text-center" style="color:black">
                 {{ opcionMenu | uppercase }}
+                {{ keyPedido }}
             </h1>
 
             <div>
                  <!--Si click en Pedido-->
-                <app-pedido *ngIf="opcionMenu=='pedido'"></app-pedido>
+                <app-pedido *ngIf=" opcionMenu  == 'pedido' " ></app-pedido>
                     <!--Si click en Despacho-->
-                <app-despacho *ngIf="opcionMenu=='despacho'"></app-despacho>
+                <app-despacho *ngIf=" opcionMenu =='despacho'  "></app-despacho>
                     <!--Si click en Precios-->
-                <app-precios *ngIf="opcionMenu=='precio'"></app-precios>
+                <app-precios *ngIf=" opcionMenu ==  'precio'  " ></app-precios>
                     <!--Si click en Cliente-->
-                <app-cliente *ngIf="opcionMenu=='cliente'"></app-cliente>
+                <app-cliente *ngIf=" opcionMenu == 'cliente' "></app-cliente>
                     <!--Si click en Produccion-->
-                <app-produccion *ngIf="opcionMenu=='produccion'"></app-produccion>
+                <app-produccion *ngIf=" opcionMenu == 'produccion' "></app-produccion>
                     <!--Si click en Almacen-->
-                <app-almacen *ngIf="opcionMenu=='almacen'"></app-almacen>
+                <app-almacen *ngIf=" opcionMenu == 'almacen' "></app-almacen>
                     <!--Si click en Cobros-->
-                <app-cobro *ngIf="opcionMenu=='cobro'"></app-cobro>
+                <app-cobro *ngIf=" opcionMenu == 'cobro' "></app-cobro>
 
             </div>
 

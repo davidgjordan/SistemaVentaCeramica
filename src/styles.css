@@ -14,6 +14,11 @@
     height: 200px;
 
 }
+.activado{
+background-color: #ed5c5c;
+}
+
+
 body{
   background-color: #BDBDBD;
   color: white !important;
@@ -25,14 +30,14 @@ h1 {
 font-family: 'Roboto', sans-serif;}
 h2 {
 font-family: 'Roboto', sans-serif;
+  color: white;
+
 }
 .text-titulo-card{
 font-family: 'Roboto', sans-serif;
 
 }
-h2:hover{
-    color:black;
-}
+
 .footerAux {
     background: #D32F2F;
     text-align: center;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, DoCheck } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Item } from "../../../models/Item";
@@ -11,7 +11,7 @@ import { AlmacenService } from "../../../services/firebase-service/alamacen.serv
   templateUrl: './produccion.component.html',
   providers: [ItemService, AlmacenService]
 })
-export class ProduccionComponent implements OnInit {
+export class ProduccionComponent implements OnInit, DoCheck {
   private agregarItemButton: boolean = false;
   private mostrarItemButton: boolean = false;
   private item: Item = new Item("", 0, 0, 0, 0, "", "", "", false);
@@ -22,6 +22,8 @@ export class ProduccionComponent implements OnInit {
   private listItem: Item[] = [];
   private itemKey: string = "";
   @ViewChild('cerrarModalEliminar') cerrarModalEliminar: ElementRef;
+  private nombreItemBuscar: string = "";
+  private itemsAux: Item[] = [];
 
   private buttonGuardarrItem: boolean = false;
   private buttonActualizarCambiosItem: boolean = false;
@@ -44,13 +46,20 @@ export class ProduccionComponent implements OnInit {
   ngOnInit() {
     this.almacenS.getAllAlmacen().subscribe((almacenes) => {
       this.listAlmacenes = almacenes;
+
     });
 
     this.itemS.getAllItem().subscribe((items) => {
       this.listItem = items;
+          this.itemsAux = items;
 
       console.log(this.listItem);
     });
+
+    
+  }
+  ngDoCheck(){
+      this.buscarPorNombre();
   }
 
 
@@ -125,5 +134,29 @@ export class ProduccionComponent implements OnInit {
     this.agregarItemButton = !this.agregarItemButton;
     this.formatoItem.reset();
   }
+
+
+buscarPorNombre(){
+  
+  console.log(this.nombreItemBuscar);
+  if (this.nombreItemBuscar.length > 2) {
+    this.nombreItemBuscar = this.nombreItemBuscar.toLowerCase();
+    let itemsArrEncontrados: Item[] = [];
+    for (let item of this.listItem) {
+      let nombreItem: string = item.nombre.toLowerCase();
+      if (nombreItem.indexOf(this.nombreItemBuscar) >= 0) {
+        itemsArrEncontrados.push(item);
+      }
+    }
+    if (itemsArrEncontrados.length > 0) {
+      this.listItem = itemsArrEncontrados;
+    } else {
+      this.listItem = this.itemsAux;
+    }
+  } else {
+    this.listItem = this.itemsAux;
+
+  }
+}
 
 }

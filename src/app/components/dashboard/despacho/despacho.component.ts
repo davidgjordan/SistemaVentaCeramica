@@ -10,6 +10,9 @@ import { Pedido } from "../../../models/Pedido";
 })
 export class DespachoComponent implements OnInit {
   private listaPedidos: Pedido[] = [];
+
+
+
   constructor(private pedidoS: PedidoService) { }
 
   ngOnInit() {
@@ -45,5 +48,6 @@ export class DespachoComponent implements OnInit {
     }, 1100);
 
   }
+
 
 }

@@ -5,6 +5,7 @@
             <form class="form-inline my-2 my-lg-0">
               <input #nitCliente class="form-control mr-sm-2" type="number" placeholder="Search">
               <button class="btn btn-danger my-2 my-sm-0" (click)="buscarPorNit(nitCliente.value)" type="submit">Buscar Segun Nit Del Cliente</button>
+              <button style="margin-left: 300px" (click)=generarPDFCliente() type="button" class="btn btn-danger">Imprimir Transacciones</button>
             </form>
 
         </div>
@@ -40,4 +41,6 @@
           
         </div>
     </div>
+
+
 </div>

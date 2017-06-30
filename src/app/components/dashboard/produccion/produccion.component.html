@@ -85,9 +85,13 @@
 
 
       <md-grid-list cols="3" rowHeight="1:1" *ngIf="mostrarItemButton">
+        <br>
+        <br>
+        <input  class="form-control" [(ngModel)]="nombreItemBuscar" type="text" placeholder="Search Name">
+        <br>
+        <br>
 
         <div *ngFor="let item of listItem">
-
 
           <md-grid-tile *ngIf="!item.borrado" >
 

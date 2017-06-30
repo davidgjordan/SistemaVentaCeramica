@@ -1,6 +1,9 @@
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit, Output } from '@angular/core';
 
+import { Auth } from '../../../services/auth.service';
+
+
 @Component({
   selector: 'app-menu-opciones',
   templateUrl: './menu-opciones.component.html',
@@ -10,7 +13,7 @@ export class MenuOpcionesComponent implements OnInit {
 
   @Output() eventoOpcion = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private _auth:Auth) { }
 
   ngOnInit() {
   }

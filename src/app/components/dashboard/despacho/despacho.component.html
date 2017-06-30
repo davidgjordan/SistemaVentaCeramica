@@ -6,7 +6,6 @@
                 <table class="table" style="color:black">
                   <thead class="thead-inverse">
                     <tr >
-                      <th style="color:black" class="bg-danger">#</th>
                       <th style="color:black" class="bg-danger">Cliente</th>
                       <th style="color:black" class="bg-danger">Nit Cliente</th>
                       <th style="color:black" class="bg-danger">Items</th>
@@ -20,7 +19,6 @@
                     <tr *ngIf="!pedido.borrado && !pedido.ventaExitosa">
                    
                       
-                      <th class="table-danger" scope="row">1</th>
                       <td class="table-danger"> {{ pedido.nombreCliente }} </td>
                       <td class="table-danger"> {{ pedido.nitCliente }} </td>
                       <td class="table-danger"> 
@@ -43,6 +41,8 @@
                       <td class="table-danger">
 
                         <div>
+                          
+
                           <div class="row">
                             
                             <button style="margin-bottom: 10px" *ngIf="!pedido.despachoExitoso" (click)="aprobarPedido(pedido.$key, true)" type="button" class="btn btn-danger">Aprobar Pedido</button>
@@ -71,4 +71,4 @@
         </div>
     </div>
 </div>
-
+<hr>
