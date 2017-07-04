@@ -1,46 +1,54 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
+  <div class="row">
+    <div class="col-md-12">
 
-            <form class="form-inline my-2 my-lg-0">
-              <input #nitCliente class="form-control mr-sm-2" type="number" placeholder="Search">
-              <button class="btn btn-danger my-2 my-sm-0" (click)="buscarPorNit(nitCliente.value)" type="submit">Buscar Segun Nit Del Cliente</button>
-              <button style="margin-left: 300px" (click)=generarPDFCliente() type="button" class="btn btn-danger">Imprimir Transacciones</button>
-            </form>
+      <form class="form-inline my-2 my-lg-0">
+        <input #nitCliente class="form-control mr-sm-2" type="number" placeholder="Search">
+        <button class="btn btn-danger my-2 my-sm-0" (click)="buscarPorNit(nitCliente.value)" type="submit">Buscar Segun Nit Del Cliente</button>
+        <button style="margin-left: 300px" (click)=generarPDFCliente() type="button" class="btn btn-danger">Imprimir Transacciones</button>
+      </form>
 
-        </div>
-
-        <div class="col-md-12">
-
-             <table class="table" style="color:black">
-                  <thead class="thead-inverse">
-                    <tr >
-                      <th style="color:black" class="bg-danger">Nombre Cliente</th>
-                      <th style="color:black" class="bg-danger">Nit Cliente</th>
-                      <th style="color:black" class="bg-danger">Total Anterior</th>
-                      <th style="color:black" class="bg-danger">Porcentaje Descuento</th>
-                      <th style="color:black" class="bg-danger">Total Final</th>
-                      <th style="color:black" class="bg-danger">Detalle</th>
-                      <th style="color:black" class="bg-danger">Fecha</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngIf="listaTransaccionesCliente.length > 0">
-
-                    <tr *ngFor="let transaccion of listaTransaccionesCliente">
-                      <td class="table-danger"> {{  transaccion.nombreCliente }} </td>
-                      <td class="table-danger"> {{  transaccion.nitCliente }} </td>
-                      <td class="table-danger"> {{  transaccion.totalAnterior }} </td>
-                      <td class="table-danger"> {{  transaccion.porcentajeDescuento }} </td>
-                      <td class="table-danger"> {{  transaccion.totalFinal }} </td>
-                      <td class="table-danger"> {{  transaccion.detalle }} </td>
-                      <td class="table-danger"> {{  transaccion.date }} </td>
-                    </tr>
-                 
-                  </tbody>
-                </table>
-          
-        </div>
     </div>
 
+    <div class="col-md-12">
+
+      <table class="table" style="color:black">
+        <thead class="thead-inverse">
+          <tr>
+            <th style="color:black" class="bg-danger">Nombre Cliente</th>
+            <th style="color:black" class="bg-danger">Nit Cliente</th>
+            <th style="color:black" class="bg-danger">Total Anterior</th>
+            <th style="color:black" class="bg-danger">Porcentaje Descuento</th>
+            <th style="color:black" class="bg-danger">Total Final</th>
+            <th style="color:black" class="bg-danger">Detalle</th>
+            <th style="color:black" class="bg-danger">Fecha</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="listaTransaccionesCliente.length > 0">
+
+          <tr *ngFor="let transaccion of listaTransaccionesCliente">
+            <td class="table-danger"> {{ transaccion.nombreCliente }} </td>
+            <td class="table-danger"> {{ transaccion.nitCliente }} </td>
+            <td class="table-danger"> {{ transaccion.totalAnterior }} </td>
+            <td class="table-danger"> {{ transaccion.porcentajeDescuento }} </td>
+            <td class="table-danger"> {{ transaccion.totalFinal }} </td>
+            <td class="table-danger"> {{ transaccion.detalle }} </td>
+            <td class="table-danger"> {{ transaccion.date }} </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+    <div class="row">
+      <div class="col-md-12">
+            <div *ngIf="listaTransaccionesCliente.length == 0" class="alert alert-warning" role="alert">
+              <strong>No hay datos q mostrar</strong> 
+            </div>
+        
+      </div>
+    </div>
 
 </div>
