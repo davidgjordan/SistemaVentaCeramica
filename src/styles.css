@@ -67,3 +67,11 @@ font-family: 'Roboto', sans-serif;
 md-grid-tile {
   background: #EB6969;
 }
+
+.tutorial-img{
+
+  width: 90%;
+  height: 450px; 
+  padding-left: 180px;
+
+}

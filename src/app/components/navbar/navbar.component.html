@@ -25,6 +25,12 @@
       </li>
 
       <li class="nav-item" *ngIf="auth.authenticated()">
+        <a class="nav-link" [routerLinkActive]="['activado']" [routerLink]="['tutorial']" >
+          <h2>Tutorial</h2>
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="auth.authenticated()">
 
         <button style="margin:20px; margin-left:30px" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#calculadora"
           data-whatever="@mdo">Calcular Cantidad Ceramica</button>

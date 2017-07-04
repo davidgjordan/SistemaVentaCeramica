@@ -25,7 +25,7 @@ import { ClienteComponent } from './components/dashboard/cliente/cliente.compone
 import { ProduccionComponent } from './components/dashboard/produccion/produccion.component';
 import { AlmacenComponent } from './components/dashboard/almacen/almacen.component';
 import { CobroComponent } from './components/dashboard/cobro/cobro.component';
-
+import { TutorialComponent } from './components/tutorial/tutorial.component';
 //cards
 import {MdCardModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -49,7 +49,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     ClienteComponent,
     ProduccionComponent,
     AlmacenComponent,
-    CobroComponent
+    CobroComponent,
+    TutorialComponent
   ],
   imports: [
     BrowserModule,

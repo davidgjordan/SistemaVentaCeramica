@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
 
-      <button class="btn btn-danger" type="button" (click)="agregarAlmacenButton = !agregarAlmacenButton">Agregar Almacen</button>
+     <!-- <button disabled class="btn btn-danger" type="button" (click)="agregarAlmacenButton = !agregarAlmacenButton">Agregar Almacen</button>-->
 
       <form *ngIf="agregarAlmacenButton" [formGroup]="formatoAlmacen" (ngSubmit)="guardarAlmacen()">
         <div class="form-group">

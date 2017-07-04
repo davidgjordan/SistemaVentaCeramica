@@ -28,7 +28,11 @@
 
             <td style="color:black" class="table-danger"> {{ pedido.totalFinal | number:'.1-2' }} Bs</td>
 
-            <td style="color:black" class="table-danger"> {{ pedido.ventaExitosa }}</td>
+            <td style="color:black" class="table-danger">
+               
+                <h6 *ngIf="!pedido.ventaExitosa"> Venta no Realizada</h6> 
+               
+            </td>
             <td style="color:black" class="table-danger">
                 <div>
                     <div class="row">
@@ -113,7 +117,7 @@
 
               <div class="form-group">
                 <label style="color:black" for="formGroupExampleInput">Detalle de la venta</label>
-                <input #detallePedido type="text" class="form-control"  placeholder="Ingrese el precio">
+                <input #detallePedido type="text" class="form-control"  placeholder="Ingrese el detalle de la venta">
               </div>
 
       </form>

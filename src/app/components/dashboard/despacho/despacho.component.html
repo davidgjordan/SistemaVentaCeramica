@@ -25,10 +25,10 @@
                       
                         <div *ngFor="let despachoItem of pedido.despachoItems">
                           
-                          <h6 style="color:black" > <strong> Cantidad , Item</strong>  </h6>
-                          <h6 style="color:black" > {{ despachoItem.item.cantidad }}, {{ despachoItem.item.nombre }}  </h6>
+                          <h6 style="color:black" > <strong>Item: </strong>  {{ despachoItem.item.nombre }} </h6>
+                          <h6 style="color:black" > <strong> Cantidad: </strong> {{ despachoItem.item.cantidad }} </h6>
+                        <hr>
                         </div>
-                            
                                              
                       </td>
                       <td class="table-danger"> {{ pedido.total }} </td>
